@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1558549715 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\lab3leap.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1558813196 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\runningaveglobal.c
+	<stdio.h>
+	<math.h>
+
+1558813379 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\function.c
+
+1558817018 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\binaryfunction.c
+	<stdio.h>
+
+1558816815 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\lab3rgb.c
+	<stdio.h>
+	"binaryFunction.c"
+
+1558817011 e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\binaryfunction.c
+	<stdio.h>
+
+1558993299 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab3\lab3\lab3flags.c
+	<stdio.h>
+

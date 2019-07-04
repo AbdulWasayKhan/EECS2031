@@ -1,0 +1,43 @@
+/***************************************
+* EECS2031 – Lab3 *
+* Author: Khan, Abdul Wasay *
+* Email: awkhan94@my.yorku.ca *
+* EECS_num: awkhan94 *
+* York Student #: 214981104 *
+***************************************/
+
+
+Qno1). What do you get for mainA and mainB?
+Ans). The value of int mainA is 1 and value of int mainB is 20000.
+	mainA = 1
+	mainB = 20000
+
+/* continue execution to the next breakpoint. Notice the position of > sign */
+
+The position is inside of swap method line 18: int temp = x;
+
+Qno2). What do you get for x and y?
+
+Ans). The value of x is now as 1  and 
+	the value of y is now 20000.
+
+Qno3). What do you get for mainA and mainB, and why?
+
+Ans). No symbol "mainA" in current context.
+No symbol "mainB" in current context. because the parameters of swap doesn't have mainA and mainB
+
+
+Qno4). What do you get for x and y? Are they swapped?
+
+Ans). For x we got 20000 and y as 1. Yes they are now swapped.
+
+Qno5). What do you get for mainA and mainB? Are they swapped?
+
+Ans). mainA = 1 and mainB = 20000. No they are not swapped.
+
+Qno6). What do you get here, and why?
+
+Ans). No symbol "x" in current context. and No symbol "y" in current context because once the method is finished like called after that the variables are no more because they were not declared globally. They were passed as a parameter in the function swap. Once we call the method swap we pass the variables of the main.
+
+
+ 
