@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1559498483 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab4\cal.c
+
+1559498226 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab4\lab4a0.c
+	<stdio.h>
+
+1559505083 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab4\runningavelocal2.c
+	<stdio.h>
+
+1559509602 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab4\lab4pow.c
+	<stdio.h>
+	<math.h>
+
+1559625935 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab4\lab4c.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdlib.h>
+	<math.h>
+
