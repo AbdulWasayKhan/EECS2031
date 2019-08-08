@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1563728969 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab7\lab7a.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1563758255 source:e:\abdul wasay\york uni(classes)\summer 2019\eecs 2031\labs\lab7\lab7dx.c
+	<stdio.h>
+	<stdlib.h>
+
