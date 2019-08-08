@@ -1,0 +1,721 @@
+/***************************************
+* EECS2031 – Lab8 *
+* Author: Khan, Abdul Wasay *
+* Email: awkhan94@my.yorku.ca *
+* EECS_num: awkhan94 *
+* York Student #: 214981104 *
+****************************************/
+
+0. Login to your home directory, and change to Bourne (again) shell by issuing sh or bash.The prompt should      change from % to $. Now create a working directory for this lab, and navigate to the working directory in terminal.
+
+Ans). Sh 
+	Mkdir lab8
+	Cd lab8
+
+1). There is a file named xxx in directory /eecs/dept/course/2018-19/S/2031/
+      Copy this file to your current working directory, using one entry of utility (command).
+
+Ans). cp /eecs/dept/course/2018-19/S/2031/xxx /eecs/home/awkhan94/lab8/xxx
+
+2). Check that the file is copied here.
+Ans). $ ls xxx
+	xxx
+	$
+	
+3). There are two files named xFile2 and xFile3 in directory /eecs/dept/course/2018-19/S/2031/ Copy these two files to your current working directory using one entry of utility. Assume these two files are the only files whose names begin with 'xFile'. Hint: so you can use xFile* or File?
+	
+Ans). cp /eecs/dept/course/2018-19/S/2031/xFile* /eecs/home/awkhan94/lab8/
+
+4). Verify that the 2 files are copied successfully to the current directory.
+
+Ans). 
+	$ ls xFile*
+	xFile2 xFile3
+	$ ls
+	xxx xFile2 xFile3
+	
+5. Rename file xxx to xFile1
+
+Ans). mv xxx xFile1
+
+6).  (1) Verify that the renaming is successful.
+One (professional) way to verify if an execution of a utility is successful is to examine the exit code (return value) of the executed process, which is stored in a system variable $?. Issue echo $? You should see 0, which means successful (this is opposite to C where 0 means false).
+(2) Also verify by listing files in current working directory
+
+Ans).  Echo $?
+	$ls 
+	xFile1 xFile2 xFile3
+	
+7). (1) Create a sub-directory named 2019 under your current working directory. (2)Then still in the current working directory, create a subdirectory lab8a under 2019.
+
+Ans). Mkdir 2019
+	mkdir 2019/lab8a
+	
+8).  Verify that the two directories are created successfully, by recursively listing directory 2019 and its     contents.
+	$ ls -R 2019
+Ans). 2019:
+	lab8a
+	2019/lab8a:
+
+9). Still in current working directory, (1) remove lab8a using rmdir and (2) then remove 2019 using rmdir
+
+Ans). By giving an absolute path(from root) 
+rmdir /eecs/home/awkhan94/lab8/2019/lab8a
+Rmdir 2019
+
+10). Verify 9. by trying to list directory 2019. Should get ls: cannot access 2019: No such file or directory
+
+Ans). Yes because there is no such file or directory 2019
+
+
+
+11. (1) Create (again) a subdirectory 2019 and 2019/lab8a under the current working directory, using
+mkdir 2019/lab8a. What do you get?
+
+Ans).  cannot create directory ‘2019/lab8a’: No such file or directory
+
+12).  (1) Fix the problem in 11. Hint: -p flag of mkdir
+         (2) Check the exit value of execution. You should get 0, which means successful
+         (3) confirm by recursively listing directory 2019 and its contents. You should see same result as in 8.
+
+Ans). Mkdir -p 2019/lab8a = this will create lab8a in 2019 which was not there already.
+	Ls -R 2019 list the contents and directory
+
+13). Move xFile1 into subdirectory lab8a (with same name)
+
+Ans). Mv xFile1 lab8a
+
+14. Then move all the other 2 files (together) into lab8a (using one entry of utility)
+
+Ans). Mv xFile* lab8a
+
+15). Verify that the creation and moving (12-14) were successful, by recursively listing directory 2019 and contents.
+
+Ans).  ls -l -R 2019
+
+16). 1) Navigate to 2019 and (2) list the files in subdirectory lab8a.
+
+Ans). ls -l lab8a
+
+	17. Then list the information of subdirectory lab8a itself
+Ans). ls -l -d lab8a
+
+	18. Copy directory lab8a to a new directory named lab8b,under the same directory (using one utility).
+Ans. cp -r lab8a lab8b
+
+19). Verify that lab8b is created and the two directory are identical
+Ans). $ ls -l *
+
+20). Remove the whole directory lab8a using rmdir. What happened?
+Ans). rmdir: failed to remove ‘lab8a’: Directory not empty
+
+22). Ans). rm -r lab8a: we used this command to recursively delete the directory which was not empty.
+
+24). Move xFile1, which is in subdirectory lab8b, to current (parent) directory, using relative pathname.
+Ans).  mv /cs/home/awkhan94/lab8/2019/lab8b/xFile1 /cs/home/awkhan94/lab8/2019/xFile1
+
+26). mv lab8b lab8working
+
+29). mv /cs/home/awkhan94/lab8/2019/xFile1 /cs/home/awkhan94/lab8/2019/lab8working/xFile1 
+
+31). Issue the following commands, observe that cat reads input stdin to prints to stdout.
+Ans). It reads input from stdinput and prints the same which we write to the console
+
+33). Display on stdout the contents of file xFile1
+Ans). Cat xFile1
+
+34). Display on stdout the contents of the three files with one entry (Try more xFile1 xFile2 xFile3 or more xFile? Use space bar to proceed.)
+
+35). Check how many lines xFile1 contains. You should get 5.
+Ans). wc -l xFile1
+
+36). Display (only) the first two line of xFile1
+Ans). head -2 xFile1  = displays the first two lines of the file. Also for the last two lines it would be tail -2 xFile1
+
+37). Display the last 3 lines of xFile2
+Ans). tail -3 xFile2
+
+38). 1).Confirm that xFile1 and xFile2 are identical now, using a utility, which should return silently (Hint:    cmp or diff). 
+(2) Examine the exit code, you should get 0
+
+Ans). "cmp xFile1 xFile2" after comparing to confirm I wrote "echo $?" which successfully returns 0
+Another way to check is using "diff xFile1 xFile2 "
+
+41). (1) Show that xFile2 and xFile3 are not identical, using cmp utility, which will not be silent this time. Try to understand the message but don’t spend too much time on it. (2) Examine the exit code, you should get 1
+
+Ans), They are not the same as these two were not in the xFile3 that’s why we get 1 also for the exit code.
+ Tony Jones  2152 20 Mar 1950 and Lisa Sue    1222 4  Jul 1980
+
+42). (1) Concatenate the contents of the three files into a new file xFile123, in the order of xFile1,xFile2 and xFile3. (2) After that, show on stdout the content of xFile123.
+
+Ans). cat xFile1 xFile2 xFile3 > xFile123
+more xFile123
+
+43. Sort lines in file xFile123 so identical lines are adjacent now
+Ans). sort xFile123
+
+44. Show on the stdout the content of xFile123, with duplicate lines removed/merged
+Hint: utility uniq will do the job
+
+Ans). sort xFile123 | uniq = here we did piping we take the output of sorted file and make it the input of uniq. Uniq removes the duplicate content inside the file and merged the contents together.
+
+45. Remove the identical lines and save the result into a file xFile123compact.
+Hint: Just redirect the output of 44 using redirection >
+
+Ans). sort xFile123 | uniq > xFile123compact
+
+47). Issue chmod u-r xFile1. This removes the read permission of user (owner). Now examine the resulting permission mode of the file. You should get --wx------ Now issue cat xFile1 What did you get?
+
+Ans).  Permission denied
+
+48). Issue chmod 775 xFile1, and then examine the resulting permission mode of the file. What do you get? You should get -rwxrwxr-x Can you understand what we are doing here?
+
+Ans).
+U = user/owner
+G = group
+O = other
+A = open for All
+--U- -G-- -O-- -A--
+
+ Yes, we are basically changing the permission of the file before we had only write and execute permission for the user only but now the permissions changed not only for the user but for group, others and all.
+1). Rwx = 7 because r= 1 w = 1 x = 1 and when three bits are on it gives 7 in decimal for the first one which is user/owner permission
+	2) Rwx this time for group which is also 7
+	3) For others we gave the permission to them to just read and execute not write. That’s why it's 5
+	
+	So overall it becomes 755.
+	
+49. Now issue chmod 777 xFile1, and then examine the resulting permission mode of the file. What do you get? You should get -rwxrwxrwx Can you understand what we are doing here?
+
+Ans).  This basically aloows the permission to the owner, group and others as well for read, write and execute.
+
+50). Change the permission of xFile123compact using octal numbers so that the permission becomes
+-rwxr--r-- 1 yourname ugrad 140 Mar 25 17:23 xFile123compact
+
+Ans).  chmod 744 xFile123compact = -rwxr--r-- 1 awkhan94 ugrad 145 Jul 25 15:13 xFile123compact
+
+51). Change the permission of xFile123compact by adding an execute permission to groups. You should get the following result: -rwxr-xr-- 1 yourname ugrad 145 Mar 25 17:23 xFile123compact
+
+Ans). chmod 754 xFile123compact
+	ls -l xFile123compact
+	-rwxr-xr-- 1 awkhan94 ugrad 145 Jul 25 15:13 xFile123compact
+	
+52). Change the permission of xFile123compact by adding a write permission to groups, and remove read permission of the others of the file. You should issue chmod only once. You should get the following result:
+-rwxrwx--- 1 yourname ugrad 145 Mar 25 17:23 xFile123compact
+
+Ans). 
+
+53. Change the permission of xFile123compact by removing write permission from group, and adding write and execute permission to others. You should issue chmod only once. You should get the following result:
+–rwxr-x-wx 1 yourname ugrad 145 Mar 25 17:23 xFile123compact
+
+Ans). chmod 753 xFile123compact
+            ls -l xFile123compact
+	-rwxr-x-wx 1 awkhan94 ugrad 145 Jul 25 15:13 xFile123compact
+	
+54). Ans). chmod 644 xFile123
+		ls -l xFile123
+		-rw-r--r-- 1 awkhan94 ugrad 377 Jul 25 15:04 xFile123
+
+55). Modify xFile1 by adding a new line at the end of the file. This can be done by
+Ans). $ echo "this is a xxx new line" >> xFile1 or
+	$ cat >> xFile1
+	this is a xxx new line
+	^ D
+	
+56). Remove the write permission of the owner of xFile1, and try 55 again. What did you get?
+
+ Ans). chmod 555 xFile1
+	ls -l xFile1
+	-r-xr-xr-x 1 awkhan94 ugrad 168 Jul 27 18:01 xFile1
+
+Question 57-58 should be done without using sort. Utility ls can do sorting itself.
+
+57). List the files in the current directory, sorted by the modification time. By default “newest first”, so xFile1 should be the first file in the list and other files are also sorted according to the modification time.
+
+Ans). ls -tl | more = here  the "t" option sorts the list on the modification time page#56
+
+57b). List the files, sorted by the modification time, in reverse order. xFile1 should become the last file in the list.
+
+Ans). ls -trl | more = here r is for reverse
+
+58). List the files, sorted by the size of the files. By default “biggest first”, so xFile123 should be the first file in the list and other files are also sorted according to the sizes
+
+Ans). ls -tSl | more
+
+Ans58b). ls -Srl | more
+
+59).  Try to get the type of the file xFile123compact (Hint: use file utility)
+xFile123compact: ASCII text
+
+Ans). Page84: file xFile123compact
+
+60). Recall that utility who lists the people who are currently logged on to the EECS server such as red.cse.yorku.ca. Get how many people are currently logged on to red server. (If you are in the prism lab, issue ssh red.)
+
+Ans). Who:  lists the people who are currently logged on to the EECS server
+	who | wc -l = tells  how many people are currently logged on to red server.
+	
+61). Sort the list of people who are currently logged on.
+
+Ans). who -u | sort
+
+62). Sort the list of people who are currently logged on, based on login date (the 3rd column), in chronological order.
+
+Ans).  who | sort -k3 = this basically sorts the current online users on red.cse.yorku.ca according to the third coloumn.
+-k = coloumn
+
+63). Get the information of the first three people who are currently logged on the system.
+Hint: pipe the result of 62 to utility head
+
+Ans). who | sort -k3 | head -3
+
+64). Sort xFile123compact according to the numerical value of the 3rd field
+
+Ans). sort -k3 xFile123compact = this is not correct. 
+
+	After writing man sort, I figured that we have to use -n after -k3 so that it compares the string value and but in chronological or ascending order.
+	-n, --numeric-sort
+	              compare according to string numerical value
+	
+
+65). The above result is incorrect (why?). Fix the problem by using the utility more effectively
+Ans). Because it doesn't compare according to string numerical value.
+Fixed one is: sort -k3 -n xFile123compact
+
+66). Sort xFile123compact according to the numerical value of the 3rd field, in reverse order
+
+Ans). sort -k3 -n -r xFile123compact
+
+67). In the previous two exercises, John Smith and Lisa Sue, who have the same 3rd field value, did not get further sorted according to the 4th field. The following command sort xFile123compact according to the numerical value of the 3rd field, and then based on this, further sort according to the 4th field
+
+Ans). sort -k3 -n -k4 xFile123compact
+
+68). Sort xFile123compact according to the year (the last field)
+
+Ans). sort -k6 -n xFile123compact
+
+69). Sort xFile123compact according to the year (the last field), in reverse order.
+
+Ans). sort -k6 -n -r xFile123compact
+
+70). Sort xFile123compact according to the 5th field (month)
+
+Ans). sort -k 5 xFile123compact = but this is not correct the correct is in 71.
+
+71). In the previous question, month field is not sorted correctly (why?). Fix by using the utility more effectively.
+
+Ans). The month is not sorted correctly because the -M wasn't used which basically sorts months in chronological order.
+
+The following exercises involve searching matches in files. Use egrep or grep –E (which guarantee to accept
+the extended regular expression) and make sure you are in sh or bash
+
+72). (1) Use grep or egrep to get the people who are currently logged on using yorku.ca network. (2) find out how many people are currently logged on using yorku.ca network (3) Reverse the result, showing who logon using non yorku.ca network (so you can see clearly who is logon from the department and who is logon from outside, e.g., from home. Occasionally I use this trick to check if the professors I want to drop by is currently in the office – you’d better hold off going if he is currently logged on from non-York network such as bell or rogers :)
+
+Ans). 1). who | grep yorku.ca = this is to find who is logged on with yorku.ca network
+	2). who | grep yorku.ca | wc -l = this basically tells that how many people are currently logged in with      yorku.ca network
+	3).  who | grep -v yorku.ca = this basically shows who is loged on other than yourku.ca network, 
+	 -v, --invert-match
+	              Invert the sense of matching, to select non-matching lines.  (-v is specified by
+	              POSIX.)
+73). Display records of people in file xFile123compact who has a field value 2 in the record.
+
+Ans).  grep -w 2 xFile123compact
+
+74). The above result is not desirable. Use the utility effectively so that only John Duncan 2 20 Jan 1966 is displayed. Hint: do a ‘whole word’ match.
+
+Ans). egrep -w '2'  xFile123compact = this does it right, by using -w which means search by the word 2.
+	John Duncan 2    20 Jan 1966
+	
+75). Display the records of people in file xFile123compact who were born in 1950s. Hint: from the perspective of regular expression, a person’s year field is 195. where . represent any single character.
+
+Ans). egrep "195." xFile123compact
+
+76). Get the number of peoples in xFile123compact who were born in 1950s. You should get 2.
+
+Ans).  grep "195." xFile123compact | wc -l
+
+77). The EECS department maintains the records of all the students, staff and faculty members in a file named passwd, located under directory /etc, one person per line. Issue a command to see the content of the file. For such a long file, cat is not a good choice.
+
+Ans). More passwd = press spacebar to see the more content of the file.
+
+78). Issue a utility to find out how many people are in the file. You should get about 3780.
+
+Ans). more passwd | wc -l = this will list the number of people in the file which are 3785
+
+79). Find out the number of people with name Wang in the file. You should get about 49
+The (modified) class list of our class can be found at /eecs/dept/course/2018-19/S/2031/classlist. Each line of the file contains one student information, where the first column is the EECS username.
+
+Ans).  more passwd | grep -w 'Wang' | wc -l = by this we get number 49 for no. of people
+	
+
+80). Get the number of students currently enrolled in the course. You should get 135. You can use the file directly (by giving the pathname), or, copy the file to your current directory.
+
+Can we use grep too over here?
+
+Ans).  more classlist | wc -l = this will return 135
+
+81). Retrieve your record from the class list. (ask Prof if we are lets say in current directory which is lab8working and want to go all the way to class list then which pathway we will use?
+Are we going to use like cd /../eecs/ ?)
+
+Ans). grep khan classlist = list the record of mine from the classlist of 135 students
+
+82). (1) Get the number of students whose family name is Wang. You should get 4
+	(2)Confirm 
+	(1) by retrieving the record of students whose family name is Wang. You should see four lines
+
+Ans).   grep Wang classlist | wc -l = return the number of Wang in classlist. Confirmed.
+	grep Wang classlist = yes four lines.
+	
+
+83). (1) Get the number of students whose family name is Li. You should get 6.
+	(2) Confirm
+	(1) by retrieving the record of students whose family name is Li. You should see six lines.
+	
+Ans).  grep -w Li classlist | wc -l = will get 6
+	grep -w Li classlist = will get 6 lines
+
+84). (1) Get the number of students whose family name is Liu. You should get 3.
+	(2) Confirm (1) by retrieving the record of students whose family name is Liu. You should see three lines.
+	
+Ans).  grep -w Liu classlist | wc -l = returns 3
+	grep -w Liu classlist = three lines
+	
+
+85). (1) Get the number of students whose family name is Patel. You should get 6.
+	(2) Confirm (1) by retrieving the record of students whose family name is Patel. You should see six lines.
+	
+Ans). grep -w Patel classlist | wc -l = number 6 returned
+	grep -w Patel classlist
+
+86). Get the number of students whose family name is Wong. You should get 1.
+
+Ans). grep -w Wong classlist | wc -l = returns 1
+
+87).  (1) Get the number of students whose family name is Wang or Wong. You should get 5.
+Hint, from the perspective of regular expression, W[ao]ng or "Wang| Wong" will do the trick
+
+(2 ) Confirm (1) by retrieving the record of students whose family name is Wang or Wong. You should see five lines.
+
+Ans).  egrep W[ao]ng classlist | wc -l = returns 5
+	egrep W[ao]ng classlist = returns 5 lines.
+
+88). Look for the students whose eecs login id (in the first column of the file) starts with cse.
+
+Ans).  grep ^cse classlist = ^ is used for beginning the line, prints two lines starting with cse. Page52.
+
+89. The above result is not desirable. Use this utility effectively, so the last line is filtered out.
+
+Ans). grep ^cse classlist = this basically filters last line out and displays only those 
+
+90).  cut is a utility that can extract columns of a text file. By default cut treats tab as the column delimiter. (We can also specify other delimiters such as space or comma). To specify the columns to extract, use -f.
+The classlist columns are separated by tab.
+
+Issue cut -f 1 classlist Observe that the only eecs user info (the first column) is displayed.
+Issue cut -f 3 classlist Observe that the only surnames (the 3rd column) is displayed.
+Issue cut -f 1-3 classlist Observe that columns 1 to 3 are displayed.
+Issue cut -f 1,3 classlist Observe that the first and the 3rd column are displayed.
+Issue cut -f 3,4 classlist Observe the 3rd column (surname) and 4th column (given name) are displayed
+
+There is a file lyrics in directory /eecs/dept/course/2018-19/S/2031. Find the lines in lyrics that:
+
+91. contains the
+#So turn off the light, 1980
+Say all your prayers and then,
+Beautiful mermaids will swim through the sea,
+And you will be swimming there too.
+sea 1980 I got there by chance.
+
+	Absolute path right
+Ans1). grep "the" /eecs/dept/course/2018-19/S/2031/lyrics
+
+Ans). grep 'the' lyrics = this shows the lines which has "the" in it
+
+92. contains the as a whole word
+#So turn off the light, 1980
+Beautiful mermaids will swim through the sea,
+
+Ans1.) grep -w 'the' /eecs/dept/course/2018-19/S/2031/lyrics
+Ans). grep -w 'the' lyrics = this displays the text that has the as a whole word in it.
+
+93. does not contain "the" as a whole world
+Well you know it's your bedtime,
+Say all your prayers and then,
+Oh you sleepy young 1970 heads dream of wonderful things,
+And you will be swimming there too.
+sea 1980 I got there by chance.
+
+Ans).  egrep -w [^the] lyrics = this produces the output as above. Doesn't contain "the"
+
+94. contains digits
+	#So turn off the light, 1980
+	Oh you sleepy young 1970 heads dream of wonderful things,
+	sea 1980 I got there by chance.
+
+Ans).  grep [0-9] lyrics = this produces above output which has numbers in every line.
+
+95. contains 1980
+	#So turn off the light, 1980
+	sea 1980 I got there by chance.
+	
+Ans). grep 1980 lyrics = returns the above two lines which has 1980 in it.
+
+	96. end with 1980
+	#So turn off the light, 1980
+	
+Ans). egrep "1980$" lyrics = this produces the line where it has 1980 and then stops because we used $ sign which means end of pattern
+
+97. contains sea
+Beautiful mermaids will swim through the sea,
+sea 1980 I got there by chance.
+
+
+Ans).  grep sea lyrics = this rereturns the above two line which contain sea in the lines.
+
+98. begins with sea
+	sea 1980 I got there by chance.
+	
+Ans). egrep ^sea lyrics
+
+99).  contains one (any) character followed by nd
+	Say all your prayers and then,
+	Oh you sleepy young 1970 heads dream of wonderful things,
+	And you will be swimming there too.
+	
+Ans). grep [a-zA-Z]nd lyrics
+
+	
+100). contains one (any) character followed by nd, but as a whole world only (so wonderful does not match)
+	Say all your prayers and then,
+	And you will be swimming there too.
+	
+Ans). grep -w [a-zA-Z]nd lyrics
+
+101. begins with one (any) character followed by nd
+	And you will be swimming there too. (ask this if this is correct?)
+	
+Ans). grep -w [A-Z]nd lyrics
+
+102. contains letter A or B or C or D
+	Beautiful mermaids will swim through the sea,
+	And you will be swimming there too.
+	
+Ans). grep [A?B?C?D] lyrics = this produces the above result
+
+103. begins with a capital letter
+	Well you know it's your bedtime,
+	Say all your prayers and then,
+	Oh you sleepy young 1970 heads dream of wonderful things,
+	Beautiful mermaids will swim through the sea,
+	And you will be swimming there too.
+	
+Ans).  grep ^[A-Z] lyrics
+
+104. ends with a and one other character.
+	Beautiful mermaids will swim through the sea,
+	
+Ans). grep "[a][,]" /eecs/dept/course/2018-19/S/2031/lyrics
+
+105). contains a character that is either a or b or c, followed by nd
+	Say all your prayers and then,
+	
+Ans).  grep "[a?b?c]nd" /eecs/dept/course/2018-19/S/2031/lyrics
+
+106). contains a character that is not a nor b nor c, followed by nd
+	Oh you sleepy young 1970 heads dream of wonderful things,
+	And you will be swimming there too.
+	
+Ans). grep "[^a?b?c]nd" /eecs/dept/course/2018-19/S/2031/lyrics
+
+107). Go back to the parent directory
+
+Ans).  cd ..
+
+108). Issue utility
+	find . -name "xFile?"
+	What did you get?
+	
+Ans). find . -name "xFile?"
+I get the following files
+./lab8working/xFile2
+./lab8working/xFile3
+./lab8working/xFile1
+
+109).  Now issue the utility
+	find . -name "xFile*"
+	What did you get?
+
+Ans).  I get all the list of files of xFile
+
+./lab8working/xFile2
+./lab8working/xFile3
+./lab8working/xFile1
+./lab8working/xFile123
+./lab8working/xFile123compact
+
+
+110). Now issue
+	find . -name "xFile*" -exec mv {} {}.Lab8 \;
+	What do we intend to do here?
+	List directory lab8working and examine what happens to the files in lab8working?
+	
+Ans). We intend to execute the command to move all the files of xFile to lab8 but that didn't happen due to permission denial.
+
+red 435 % ls -l
+total 20
+-r-xrwxrwx 1 awkhan94 ugrad 168 Jul 27 18:01 xFile1
+-rw-r--r-- 1 awkhan94 ugrad 377 Jul 25 15:04 xFile123
+-rwxr-x-wx 1 awkhan94 ugrad 145 Jul 25 15:13 xFile123compact
+-rwx------ 1 awkhan94 ugrad 145 Jul 25 12:24 xFile2
+-rwx------ 1 awkhan94 ugrad  87 Jul 25 12:24 xFile3
+
+
+Part II Common shell functionalities and corresponding meta-characters
+
+
+In class we also discuss some functionalities that are common among the different shells, and their associated meta-characters. In part I above we have experienced some of them, for example, Pipes |, Filename substitution (wildcards) * ? [], Redirections < > >>. Here you practice some more functionalities, including Command substitution ` `, Variable substitution $, Conditional sequence && ||, and Quotes '' and " ".
+	111. Filename substitution (Wild-cards * ? []).
+	Navigate to working directory lab8working.
+	• Issue ls * Observe that all files in the directory are listed = xFile1  xFile123  xFile123compact  xFile2  xFile3
+	• Issue ls xFile*.Lab8 Observe that all files whose name begins with xFile are listed = xFile1  xFile123  xFile123compact  xFile2  xFile3
+	• Issue ls xFile?.Lab8 Observe that files xFile1.Lab8, xFile2.Lab8, xFile3.Lab8 (but not
+	xFile123.Lab8 and xFile123compact.Lab8) are listed (why?)
+	
+	Ans). Because "?" 
+	checks the single character that immediately precedes it
+	
+	• Issue ls xFile???.Lab8 Observe that only file xFile123.Lab8 is listed (why?)
+	
+	Ans).  Because xFile??? Has the pattern to include 3 leading characters of files in the directory it matches xFile123 which was in the directory.
+	 
+	• Issue ls xFile[1,3].Lab8 Observe that files xFile1.Lab8 and xFile3.Lab8 are listed (why?).
+	
+	Ans). Because it checks the numbers 1 and 3 after xFile, We had xFile1 and Xfile3 so it listed them and not others.
+	
+	• Issue ls xFile[1-3].Lab8 Observe that files xFile1.Lab8, xFile2.Lab8 and xFile3.Lab8 are listed.
+
+Ans). 
+
+112). Command substitution ``
+
+	• Issue a single command to output current date and time, where time and date info comes from utility date.
+	Hello, now is Fri Jul 19 09:13:05 EDT 2019. Have a good day
+	
+	Ans).   echo Hello, now is `date`. Have a good day
+	Hello, now is Tue Jul 30 14:59:50 EDT 2019. Have a good day
+	
+	• Issue a single command to output There are 135 students in EECS2031A where 135 comes from the result of a command that reads from file classlist.
+	
+	Ans).  echo There are `more classlist | wc -l` students in EECS2031A
+	Or
+		echo There are `cat classlist | wc -l` students in EECS2031A
+	
+	• Issue a single command to output There are 4 students in EECS2031A with family name Wang where 4 comes from the result of a command that reads from file classlist.
+	
+	Ans). echo There are `grep Wang classlist | wc -l` students in EECS2031A with family name Wang
+	
+	• Issue a single command to output There are 2 students in EECS2031A whose eecs username begins with cse where 2 comes from the result of a command that reads from file classlist.
+		
+	Ans). Echo There are `grep -w ^cse classlist | wc -l` students in EECS2031A whose eecs username begins with cse
+	
+	Output: There are 2 students in EECS2031A whose eecs username begins with cse
+	
+	
+	113.  Conditional sequence && ||. 1) For a series of commands separated by “&&” tokens, the next command is executed only if the previous command returns an exit code of 0, which means ’successful’. 2) For a series of commands separated by “||” tokens, the next command is executed only if the previous command returns a non-zero exit code, which means ‘unsuccessful’.
+	
+	• Issue egrep -w Leung classlist and then echo $? to examine the exit code 1 which means unsuccessful (no matching found).
+	
+	Ans). Returns 1 which means unsucessful, no matching
+	
+	• Issue egrep -w Wang classlist , and then echo $? to examine the exit code 0 which means matching found.
+	
+	Ans). It gives 0 as its successful
+	
+	• Issue egrep -w Leung classlist && echo HELLO, observe that HELLO is not printed (why?).
+	
+	Ans). Because the first statement before logical and operator is false so false && True gives False. Thuse exit code is 1. When you enter echo $? To check for exit code
+
+	
+	• Issue egrep -w Wang classlist && echo HELLO, observe that HELLO is printed (why?).
+	
+	Ans).  Because the first statement is true and then it goes to the second statement. 
+	
+	• Issue egrep -w Leung classlist || echo HELLO, observe that HELLO is printed (why?).
+	
+	Ans). Because the second statement is true and when its "Or" it requires to be atleast 1 then it becomes true for the statement.
+	
+	
+	• Issue egrep -w Wang classlist || echo HELLO, observe that HELLO is not printed (why?).
+	
+	Ans). Because the first statement was true and thus rather than further checking it prints the content and didn't print HELLO. If you further check the exit coe it returns 0 which is successful
+	
+	
+	114. There are often times when you want to inhibit the shell’s filename-substitution (wild-card) * ? [], variable-substitution $, and/or command-substitution ` ` mechanisms. The shell’s quoting system allows you to do just that. The way that it works is:
+	
+	1) Single quotes (' ') inhibits both wildcard substitution, variable substitution, and command substitution.
+	
+	2) Double quotes (" ") inhibits wildcard substitution only.
+	
+	• Issue courseN=EECS2031A; (no space around =) This assign variable courseN with value EECS2031A
+	Then issue echo 3 * 4 = 12, course name is $courseN – today’s date is `date`
+	Observe that both filename-substitution (wildcard) *, variable-substitution $n, and command-substitution `date` are interpreted by the shell. Among them the wildcard-substitution is interpreted as ‘any file name’.
+	• Then issue echo '3 * 4 = 12, course name is $courseN – today’s date is `date`'
+	Observe that interpretation of filename-substitution (wildcard) * is inhibited. Interpretation of variable-substitution $n and command substitution `date` are also inhibited, due to the fact that single quote ' ' inhibited the interpretation of both the three substitutions.
+	• Finally, issue echo "3 * 4 = 12, course name is $courseN – today’s date is `date`"
+	Observe that interpretation of filename-substitution (wildcard) * is inhibited. Interpretation of variable-substitution $n and command substitution `date` are not inhibited, due to the fact that double quote " " inhibits the interpretation of filename-substitution (wild-card) * only.
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	
+
+
+
