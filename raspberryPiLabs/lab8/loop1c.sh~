@@ -1,0 +1,6 @@
+#!/bin/bash
+i=1
+until test $i -eq 11; do
+	echo $i
+	let i=$i+1
+done

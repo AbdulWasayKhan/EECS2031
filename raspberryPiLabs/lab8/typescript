@@ -1,0 +1,29 @@
+Script started on Fri 24 Nov 2017 06:21:46 PM EST
+]2;ea26:/eecs/home/sushah/Desktop/eecs2031/lab8ea26 301 % cat checkhello.sh
+#!/bin/bash
+rm -f output.log
+rm -f /usr/tmp/temp$$
+rm -f hello.log
+if [ -e hello.c ]; then
+	gcc -ansi -pedantic hello.c -o hello 2>> /usr/tmp/temp$$
+	if [ -s /usr/tmp/temp$$ ]; then
+		echo "hello.c compilation errors" >> output.log; exit
+	else
+		echo "hello.c compiles successfully" >> output.log
+	fi
+else
+	echo "hello.c does not exist" >> output.log
+fi
+if [ "$(hello)" == "Hello World" ]; then
+	echo "Output correct" >> hello.log
+else
+	echo "Output mismatch" >> hello.log
+fiea26 302 % ./checkhello.sh
+ea26 303 % cat output.log
+hello.c compiles successfully
+ea26 304 % cat hello.log
+Output correct
+ea26 305 % exit
+exit
+
+Script done on Fri 24 Nov 2017 06:22:30 PM EST

@@ -1,0 +1,29 @@
+Script started on Mon 20 Nov 2017 02:33:18 PM EST
+]2;gsp17:/eecs/home/sushah/Desktop/eecs2031/lab8gsp17 301 % cat q2.sh
+#!/bin/bash
+z=$((RANDOM%10+1))
+i=1
+while test $i -eq 1; do
+	read a
+	if test $a -eq $z; then
+		echo Congratulations
+		let i=0
+	else
+		echo "Thats not it"
+	fi
+done
+gsp17 302 % ./q2.sh
+1
+Thats not it
+2
+Thats not it
+3
+Thats not it
+4
+Thats not it
+5
+Congratulations
+gsp17 303 % exit
+exit
+
+Script done on Mon 20 Nov 2017 02:33:54 PM EST

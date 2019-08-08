@@ -1,0 +1,9 @@
+Script started on Thu 16 Nov 2017 11:17:24 AM EST
+]2;gsp19:/eecs/home/sushah/Desktop/eecs2031/lab7gsp19 293 % file /bin/bash
+/bin/bash: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, BuildID[sha1]=6a58756563ec91941b6e8d1d1b3ae7fc7e876a76, stripped
+gsp19 294 % file /bin/sh
+/bin/sh: symbolic link to `bash'
+gsp19 295 % exit
+exit
+
+Script done on Thu 16 Nov 2017 11:17:38 AM EST

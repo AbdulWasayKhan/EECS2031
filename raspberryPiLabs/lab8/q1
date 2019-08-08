@@ -1,0 +1,57 @@
+Script started on Mon 20 Nov 2017 02:06:54 PM EST
+]2;gsp17:/eecs/home/sushah/Desktop/eecs2031/lab8gsp17 298 % cat ./loop1a.sh
+#!/bin/bash
+for i in 10; do
+	seq $i;
+done
+gsp17 299 % ./loop1a.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+gsp17 300 % cat loop1b.sh
+#!/bin/bash
+i=1
+while test $i -le 10; do
+	echo $i
+	let "i=$i+1"
+done
+gsp17 301 % ./loop1b.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+gsp17 302 % cat loop1c.sh
+#!/bin/bash
+i=1
+until test $i -eq 11; do
+	echo $i
+	let i=$i+1
+done
+gsp17 303 % ./loop1c.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+gsp17 304 % exit
+exit
+
+Script done on Mon 20 Nov 2017 02:07:37 PM EST

@@ -1,0 +1,6 @@
+#!/bin/bash
+i=1
+while test $i -le 10; do
+	echo $i
+	let "i=$i+1"
+done

@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "lexical.h"
+#include "nextInputChar.h"
+#include "tokenStack.h"
+
+static int popInt(struct tokenStack *s)
+{
+	int val;
+	if((s->top) <= 0)
+	{
+		printf("no token to pop\n");
+		return 0;
+	}
+	else
+	{
+		struct lexToken *t = allocToken();
+		t = popTokenStack(s);
+		val = t->symbol[0];
+		freeToken(t);
+		return val;
+	}
+}
+
+static void pushInt(struct tokenStack *s, int v)
+{
+	if((s->top) == MAX_SYMBOL_LENGTH)
+	{
+		printf("no more space left to push in stack\n");
+		exit(1);
+	}
+	else
+	{
+		struct lexToken *t = allocToken();
+		t->symbol[0] = v;
+		t->kind = LEX_TOKEN_NUMBER;
+		pushTokenStack(s, t);
+	}
+}
+
+static void doOperator(struct tokenStack *s, char *op)
+{
+	if(!strcmp(op,"quit")) {
+		exit(0);
+	} else if(!strcmp(op,"print")) {
+		struct lexToken *t = popTokenStack(s);
+		dumpToken(stdout, t);
+		freeToken(t);
+	} else {
+		fprintf(stderr,"don't know |%s|\n", op);
+		exit(1);
+	}
+}
+
+int main(int argc, char *argv[])
+{
+	int top, bot, num;
+	char *op;
+	struct tokenStack *s = createTokenStack();
+	struct lexToken *t = allocToken();
+	setFile(stdin);
+	while(((t = nextToken())->kind) != LEX_TOKEN_EOF)
+	{
+		if((t->kind) == LEX_TOKEN_IDENTIFIER)
+		{
+			op = t->symbol;
+			doOperator(s, op);
+		}
+		if((t->kind) == LEX_TOKEN_NUMBER)
+		{
+			num = atoi(t->symbol);
+			pushInt(s, num);
+		}
+		if((t->kind) == LEX_TOKEN_OPERATOR)
+		{
+			struct lexToken *u = popTokenStack(s);
+			dumpToken(stdout, u);
+			top = popInt(s);
+			bot = popInt(s);
+			if(!(strcmp(t->symbol, "+")))
+			{
+				num = top + bot;
+				pushInt(s, num);
+			}
+			if(!(strcmp(t->symbol, "-")))
+			{
+				num = bot - top;
+				pushInt(s, num);
+			}
+		}
+	}
+	freeToken(t);
+	return 0;
+}
